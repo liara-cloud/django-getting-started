@@ -1,0 +1,13 @@
+{
+  "platform": "django",
+  "disks": [
+    {
+      "name": "sqlite",
+      "mountTo": "data"
+    },
+    {
+      "name": "media",
+      "mountTo": "documents"
+    }
+  ]
+}

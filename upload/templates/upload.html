@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استقرار برنامه‌ی آپلود فایل در لیارا</title>
+    {% load static %}
+    <link href="{% static 'icon.svg' %}" rel="shortcut icon" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href="{% static 'upload.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <form action='{% url "my_view" %}' method="POST" enctype="multipart/form-data">
+            <h3 class="text-center mb-5">File Upload in Django</h3>
+            {% csrf_token %}
+
+            {{ message }}
+            <p>{{ form.non_field_errors }}</p>
+
+
+            <div class="custom-file">
+                {{ form.docfile.errors }}
+                <label class="custom-file-label" for="id_docfile">Select file</label>
+                {{ form.docfile }}
+            </div>
+
+            <button type="submit" name="submit" class="btn btn-primary btn-block mt-4">
+                Upload Files
+            </button>
+        </form>
+        <div class="container-fluid bg-light" style="margin: 15px 0 0 0">
+            {% if documents %}
+            {% for document in documents %}
+            <p>{{ document.docfile.name }} <a href="{{ document.docfile.url }}" target="_blank">Download</a></p>
+            {% endfor %}
+            {% endif %}
+
+        </div>
+    </div>
+
+    <script>
+        const input = document.getElementById('id_docfile');
+        input.addEventListener('change', changeFileName);
+
+        function changeFileName(event) {
+            const label = document.getElementsByClassName('custom-file-label');
+            label[0].innerHTML = event.srcElement.files[0].name;
+        }
+    </script>
+</body>
+
+</html>
