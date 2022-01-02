@@ -1,0 +1,6 @@
+{
+  "platform": "django",
+  "django": {
+    "pythonVersion": "3.9"
+  }
+}
