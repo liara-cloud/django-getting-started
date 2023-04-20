@@ -2,12 +2,8 @@
   "platform": "django",
   "disks": [
     {
-      "name": "sqlite",
-      "mountTo": "data"
-    },
-    {
-      "name": "media",
-      "mountTo": "documents"
+      "name": "data",
+      "mountTo": "media"
     }
   ]
 }
