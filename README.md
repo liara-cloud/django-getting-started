@@ -18,7 +18,7 @@ $ liara deploy
 1.  [Adding liara.json file](https://github.com/liara-cloud/django-getting-started/tree/liaraJson)
 2.  [Apply custom nginx configuration with liara_nginx.conf file](https://github.com/liara-cloud/django-getting-started/tree/nginx)
 3.  [Disk setup](https://github.com/liara-cloud/django-getting-started/tree/diskSetup)
-
+4.  [Email Server In Liara](https://github.com/liara-cloud/django-getting-started/tree/email-server)
 
 ## Documentation
 Read more on liara [Django apps documentation](https://docs.liara.ir/app-deploy/django/getting-started)
