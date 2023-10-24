@@ -160,8 +160,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 X_FRAME_OPTIONS = "SAMEORIGIN"
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.c1.liara.email'
+EMAIL_HOST = ''
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'competent_roentgen_k7981t'  
-EMAIL_HOST_PASSWORD = 'b945d240-61ed-4d3a-aec2-e9b98bf571fe' 
+EMAIL_HOST_USER = ''  
+EMAIL_HOST_PASSWORD = '' 
