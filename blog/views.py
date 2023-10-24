@@ -8,7 +8,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-
 from django.core.mail import send_mail
 
 from .forms import CustomUserCreationForm
@@ -65,7 +64,7 @@ def signup(request):
             login(request, user)
 
             subject = 'welcome to Liara'
-            message = 'Happy To See You As A Member In Our Blog :)'
+            message = "Thanks for Joining us in Liara"
             from_email = 'welcome@alinajmabadi.ir'
             recipient_list = [form.cleaned_data.get('email')]
 

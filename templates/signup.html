@@ -4,7 +4,7 @@
 
 <div class="container my-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="card">
                 <div class="card-header text-center">
                     <h1 class="h4 mb-0">ثبت نام</h1>
@@ -13,16 +13,16 @@
                     <form method="post">
                         {% csrf_token %}
                         <div class="form-group">
-                            {{ form.username.label_tag }} {{ form.username }}
+                            <input type="text" name="username" class="form-control" placeholder="نام کاربری">
                         </div>
                         <div class="form-group">
-                            {{ form.email.label_tag }} {{ form.email }}
+                            <input type="email" name="email" class="form-control" placeholder="ایمیل">
                         </div>
                         <div class="form-group">
-                            {{ form.password1.label_tag }} {{ form.password1 }}
+                            <input type="password" name="password1" class="form-control" placeholder="رمز عبور">
                         </div>
                         <div class="form-group">
-                            {{ form.password2.label_tag }} {{ form.password2 }}
+                            <input type="password" name="password2" class="form-control" placeholder="تکرار رمز عبور">
                         </div>
                         <button type="submit" class="btn btn-success btn-block">ثبت نام</button>
                     </form>
