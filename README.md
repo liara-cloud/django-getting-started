@@ -5,6 +5,7 @@ A blog application made on Django.
 ### Installation 
 - ```git clone https://github.com/liara-cloud/django-getting-started.git```
 - ```cd django-getting-started```
+- ```pip install virtualenv```
 - ```python -m venv .venv```
 - in windows: ```.venv\Scripts\activate```
 - ```pip install -r requirements.txt```
