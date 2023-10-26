@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "blog",
     "crispy_forms",
     "django_summernote",
+    'storages',
 ]
 
 
@@ -160,8 +161,15 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 X_FRAME_OPTIONS = "SAMEORIGIN"
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = ''
+EMAIL_HOST = 'smtp.c1.liara.email'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = ''  
-EMAIL_HOST_PASSWORD = '' 
+EMAIL_HOST_USER = 'agitated_noether_9ik9hr'  
+EMAIL_HOST_PASSWORD = '11394926-565d-4b3e-adbf-46de40315021'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_S3_ENDPOINT_URL  = 'your end point'
+AWS_ACCESS_KEY_ID = 'your access key'
+AWS_SECRET_ACCESS_KEY = 'your secret key'
+AWS_STORAGE_BUCKET_NAME = 'your bucket name'
+AWS_S3_REGION_NAME = 'us-east-1'
