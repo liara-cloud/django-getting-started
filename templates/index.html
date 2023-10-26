@@ -25,7 +25,7 @@
                 <div class="card-body">
                     <h2 class="card-title text-black">{{ post.title }}</h2>
                     <p class="card-text text-muted h6 text-black">{{ post.author }} | {{ post.created_on}} </p>
-                    <p class="card-text text-black">{{post.content|safe|slice:":200" }}</p>
+                    <p class="card-text text-black">{{post.content|slice:":200" }}</p>
                     <a href="{% url 'post_detail' post.slug  %}" class="btn btn-dark">Read More &rarr;</a>
                 </div>
             </div>
