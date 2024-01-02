@@ -164,8 +164,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.c1.liara.email'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'your host user'  
-EMAIL_HOST_PASSWORD = 'your host pass'
+EMAIL_HOST_USER = 'xenodochial_kowalevski_cq19g1'  
+EMAIL_HOST_PASSWORD = '28713035-f7de-4f34-abde-2ef161d6e00a'
+DEFAULT_FROM_EMAIL = 'welcome@alinajmabadi.ir'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_S3_ENDPOINT_URL  = 'https://storage.iran.liara.space'

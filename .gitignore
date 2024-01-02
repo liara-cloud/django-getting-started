@@ -56,7 +56,6 @@ deployment/.envs/production/.prod.db
 # Django stuff:
 staticfiles/
 frontend/staticfiles/
-media/
 mediafiles/
 cache/
 # Sphinx documentation

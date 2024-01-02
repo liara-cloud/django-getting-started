@@ -65,7 +65,7 @@ def signup(request):
 
             subject = 'welcome to Liara'
             message = "Thanks for Joining us in Liara"
-            from_email = 'welcome@alinajmabadi.ir'
+            from_email = settings.DEFAULT_FROM_EMAIL
             recipient_list = [form.cleaned_data.get('email')]
 
             send_mail(subject, message, from_email, recipient_list)
@@ -108,7 +108,12 @@ def contact_us(request):
         subject = f'پیام از {name}'
         body = f'نام: {name}\nایمیل: {email}\nپیام: {message}'
         sender_email = settings.DEFAULT_FROM_EMAIL
-        recipient_list = ['alinajmabadizadeh2002@gmail.com']
+        if form.is_valid():
+            form.save()
+            form = CustomUserCreationForm(request.POST) 
+            recipient_list = [form.cleaned_data.get('email')]
+        else:
+            recipient_list = ['']
 
         send_mail(subject, body, sender_email, recipient_list)
 
