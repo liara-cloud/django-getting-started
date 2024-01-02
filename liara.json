@@ -1,9 +1,13 @@
 {
-    "disks": [
+    "disks":[
         {
-            "name":"database",
+            "name": "database",
             "mountTo": "database"
+        },
+        {
+            "name": "media",
+            "mountTo": "media"
         }
     ],
-    "app": "liara-blog"
+    "app": "mydjango-blog"
 }

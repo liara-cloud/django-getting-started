@@ -113,7 +113,7 @@ def contact_us(request):
             form = CustomUserCreationForm(request.POST) 
             recipient_list = [form.cleaned_data.get('email')]
         else:
-            recipient_list = ['']
+            recipient_list = ['email@email.email']
 
         send_mail(subject, body, sender_email, recipient_list)
 
