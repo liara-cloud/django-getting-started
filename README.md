@@ -34,3 +34,5 @@ python manage.py migrate
 ```
 python manage.py runserver
 ```
+## first look of Django Blog
+<img src="https://files.liara.ir/liara/django/cource/first-look-of-django-blog.png" alt="Alt text" title="Optional title">
