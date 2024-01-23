@@ -21,7 +21,6 @@
             {{ message }}
             <p>{{ form.non_field_errors }}</p>
 
-
             <div class="custom-file">
                 {{ form.docfile.errors }}
                 <label class="custom-file-label" for="id_docfile">Select file</label>
@@ -34,11 +33,13 @@
         </form>
         <div class="container-fluid bg-light" style="margin: 15px 0 0 0">
             {% if documents %}
-            {% for document in documents %}
-            <p>{{ document.docfile.name }} <a href="{{ document.docfile.url }}" target="_blank">Download</a></p>
-            {% endfor %}
+                {% for document in documents %}
+                    <p>
+                        {{ document.docfile.name }}
+                        <a href="{{ document.docfile.url }}" target="_blank">Download</a>
+                    </p>
+                {% endfor %}
             {% endif %}
-
         </div>
     </div>
 
