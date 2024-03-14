@@ -13,5 +13,17 @@
         {{ form.as_p }}
         <button type="submit">Upload</button>
     </form>
+
+    <h2>Uploaded Files</h2>
+    <ul>
+        {% for photo in uploaded_photos %}
+        <li>
+            <strong>{{ photo.name }}</strong>: 
+            <a href="{{ photo.permanent_link }}" target="_blank">Permanent Link</a>
+            |
+            <a href="{{ photo.temporary_link }}" target="_blank">Temporary Link</a>
+        </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
