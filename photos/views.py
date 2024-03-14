@@ -43,19 +43,22 @@ def upload_photo(request):
         aws_secret_access_key=LIARA['secretkey']
     )
     bucket_name = LIARA['bucket']
-    objects = s3.list_objects(Bucket=bucket_name)['Contents']
+    objects = s3.list_objects(Bucket=bucket_name)
 
     uploaded_photos = []
-    for obj in objects:
-        uploaded_photos.append({
-            'name': obj['Key'],  # Assuming key name as file name
-            'permanent_link': f"{LIARA['endpoint']}/{bucket_name}/{obj['Key']}",
-            'temporary_link': s3.generate_presigned_url(
-                'get_object',
-                Params={'Bucket': bucket_name, 'Key': obj['Key']},
-                ExpiresIn=3600  # 1 hour expiry
-            )
-        })
+    if 'Contents' in objects:
+        for obj in objects['Contents']:
+            uploaded_photos.append({
+                'name': obj['Key'],  # Assuming key name as file name
+                'permanent_link': f"{LIARA['endpoint']}/{bucket_name}/{obj['Key']}",
+                'temporary_link': s3.generate_presigned_url(
+                    'get_object',
+                    Params={'Bucket': bucket_name, 'Key': obj['Key']},
+                    ExpiresIn=3600  # 1 hour expiry
+                )
+            })
+    else:
+        uploaded_photos.append({'name': 'no file', 'permanent_link': '', 'temporary_link': ''})
 
     return render(request, 'photos/upload_photo.html', {'form': form, 'uploaded_photos': uploaded_photos})
 
