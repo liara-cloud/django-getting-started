@@ -3,7 +3,9 @@ from .forms import PhotoForm
 from .models import Photo
 from django.conf import settings as s
 import boto3
-import uuid
+import datetime
+import os
+
 
 LIARA = {
     'endpoint': s.LIARA_ENDPOINT,
@@ -17,7 +19,18 @@ def upload_photo(request):
         form = PhotoForm(request.POST, request.FILES)
         if form.is_valid():
             photo_instance = form.save(commit=False)
-            photo_instance.image.name = str(uuid.uuid4())  # Set the filename to a UUID
+            
+            # Get the original filename and extension
+            original_filename, file_extension = os.path.splitext(photo_instance.image.name)
+            
+            # Get current date and time
+            current_date = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+            
+            # Construct unique filename with date and original filename
+            filename = f"{current_date}_{original_filename}{file_extension}"
+            
+            # Set the filename
+            photo_instance.image.name = filename
             photo_instance.save()
             return redirect('upload_photo')
     else:
