@@ -22,6 +22,10 @@
             <a href="{{ photo.permanent_link }}" target="_blank">Permanent Link</a>
             |
             <a href="{{ photo.temporary_link }}" target="_blank">Temporary Link</a>
+            |
+            <a href="{% url 'download_photo' photo.name|urlencode %}">Download</a>
+            |
+            <a href="{% url 'delete_photo' photo.name %}">Delete</a>  <!-- Ensure this line is correct -->
         </li>
         {% endfor %}
     </ul>
