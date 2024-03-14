@@ -3,6 +3,7 @@ from .forms import PhotoForm
 from .models import Photo
 from django.conf import settings as s
 import boto3
+import uuid
 
 LIARA = {
     'endpoint': s.LIARA_ENDPOINT,
@@ -15,7 +16,9 @@ def upload_photo(request):
     if request.method == 'POST':
         form = PhotoForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            photo_instance = form.save(commit=False)
+            photo_instance.image.name = str(uuid.uuid4())  # Set the filename to a UUID
+            photo_instance.save()
             return redirect('upload_photo')
     else:
         form = PhotoForm()
@@ -67,6 +70,4 @@ def delete_photo(request, photo_name):
     s3.delete_object(Bucket=bucket_name, Key=photo_name)
     return redirect('upload_photo')
 
-def show_uploaded_photo(request):
-    latest_photo = Photo.objects.last()  # Retrieve the latest uploaded photo
-    return render(request, 'photos/show_uploaded_photo.html', {'photo': latest_photo})
+
