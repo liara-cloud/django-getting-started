@@ -73,7 +73,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'ChatApp.wsgi.application'
+# WSGI_APPLICATION = 'ChatApp.wsgi.application'
+ASGI_APPLICATION = 'ChatApp.asgi.application'
 
 CHANNEL_LAYERS = {
 	"default": {

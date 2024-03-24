@@ -18,7 +18,7 @@
 	<br />
 	</div>
 	<script>
-	const chatSocket = new WebSocket("ws://" + window.location.host + "/");
+	const chatSocket = new WebSocket("wss://" + window.location.host + "/");
 	chatSocket.onopen = function (e) {
 		console.log("The connection was setup successfully !");
 	};
