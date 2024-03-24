@@ -76,10 +76,20 @@ TEMPLATES = [
 # WSGI_APPLICATION = 'ChatApp.wsgi.application'
 ASGI_APPLICATION = 'ChatApp.asgi.application'
 
+# CHANNEL_LAYERS = {
+# 	"default": {
+# 		"BACKEND": "channels.layers.InMemoryChannelLayer"
+# 	}
+# }
 CHANNEL_LAYERS = {
-	"default": {
-		"BACKEND": "channels.layers.InMemoryChannelLayer"
-	}
+    "default": {
+    "BACKEND": "channels_redis.pubsub.RedisPubSubChannelLayer",
+    "CONFIG": {
+        "hosts":[{
+            "address": os.getenv('REDIS_URI'),  
+        }]
+    }
+}
 }
 
 
