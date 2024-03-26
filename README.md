@@ -21,6 +21,7 @@ $ liara deploy
 4.  [Email Server In Liara](https://github.com/liara-cloud/django-getting-started/tree/email-server)
 5.  [Django Blog](https://github.com/liara-cloud/django-getting-started/tree/django-blog)
 6.  [Django WebSocket](https://github.com/liara-cloud/django-getting-started/tree/asgi)
+7.  [PostgreSQL ConnectionPooling](https://github.com/liara-cloud/django-getting-started/tree/db-connection-pool)
 
 ## Documentation
 Read more on liara [Django apps documentation](https://docs.liara.ir/app-deploy/django/getting-started)
