@@ -1,0 +1,6 @@
+{
+    "django": {
+      "pythonVersion": "3.12",
+      "mirror": false
+    }
+}

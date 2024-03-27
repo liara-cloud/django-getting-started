@@ -1,14 +1,18 @@
 from django.shortcuts import render
 from psycopg_pool import ConnectionPool
-import random, string
+import random, string, os
+
+if os.getenv('DEBUG') != 'false':
+    from dotenv import load_dotenv
+    load_dotenv()
 
 def index(request):
-    with ConnectionPool(conninfo='postgresql://root:cIdX6SQawIaWScOKpFBcel1v@olympus.liara.cloud:34464/postgres') as pool:
+    with ConnectionPool(conninfo=os.getenv('DB_URI')) as pool:
+        pool.wait()
         with pool.connection() as conn:
-            with conn.cursor() as cursor:
-                for _ in range(10):
-                    data = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
-                    cursor.execute("INSERT INTO myapp_testmodel (data) VALUES (%s)", [data])
+            for _ in range(10):
+                data = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
+                conn.execute("INSERT INTO myapp_testmodel (data) VALUES (%s)", [data])
 
             with conn.cursor() as cursor:
                 cursor.execute("SELECT data FROM myapp_testmodel")
