@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'photos',
-    'storages',
 ]
 
 MIDDLEWARE = [
@@ -144,4 +143,11 @@ AWS_S3_ENDPOINT_URL = LIARA_ENDPOINT
 AWS_S3_REGION_NAME = 'us-east-1'  
 
 # Django-storages configuration
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.s3.S3Storage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
