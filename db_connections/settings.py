@@ -27,6 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+if DEBUG:
+    from dotenv import load_dotenv
+    load_dotenv()
+
 
 # Application definition
 
@@ -37,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mysql_db'
 ]
 
 MIDDLEWARE = [
@@ -77,7 +82,21 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    },
+
+    'mysql': {
+        'ENGINE': 'dj_db_conn_pool.backends.mysql', # 'django.db.backends.mysql' without connection pooling
+        'NAME':     os.getenv("MYSQL_DB_NAME"), 
+        'USER':     os.getenv("MYSQL_DB_USER"),
+        'PASSWORD': os.getenv("MYSQL_DB_PASS"),
+        'HOST':     os.getenv("MYSQL_DB_HOST"),
+        'PORT':     os.getenv("MYSQL_DB_PORT"),
+        'POOL_OPTIONS': {
+            'POOL_SIZE': 10,
+            'MAX_OVERFLOW': 10,
+            'RECYCLE': 24 * 60 * 60
+        }
+    },
 }
 
 
