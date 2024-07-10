@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mysql_db',
     'mariadb_db',
+    'postgresql_db',
+
 ]
 
 MIDDLEWARE = [
@@ -112,6 +114,20 @@ DATABASES = {
             'RECYCLE': 24 * 60 * 60
         }
     },
+
+    'postgresql': {
+        'ENGINE': 'dj_db_conn_pool.backends.postgresql',
+        'NAME':     os.getenv("POSTGRESQL_DB_NAME"), 
+        'USER':     os.getenv("POSTGRESQL_DB_USER"),
+        'PASSWORD': os.getenv("POSTGRESQL_DB_PASS"),
+        'HOST':     os.getenv("POSTGRESQL_DB_HOST"),
+        'PORT':     os.getenv("POSTGRESQL_DB_PORT"),
+        'POOL_OPTIONS': {
+            'POOL_SIZE': 10,
+            'MAX_OVERFLOW': 10,
+            'RECYCLE': 24 * 60 * 60
+        }
+    }
 
 }
 

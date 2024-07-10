@@ -3,6 +3,7 @@ Django==5.0.7
 django-db-connection-pool==1.2.5
 greenlet==3.0.3
 mysqlclient==2.2.4
+psycopg2==2.9.9
 python-dotenv==1.0.1
 SQLAlchemy==2.0.31
 sqlparams==6.0.1
