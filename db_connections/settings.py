@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-if DEBUG:
+if os.getenv("DEBUG"):
     from dotenv import load_dotenv
     load_dotenv()
 
