@@ -127,6 +127,20 @@ DATABASES = {
             'MAX_OVERFLOW': 10,
             'RECYCLE': 24 * 60 * 60
         }
+    },
+
+    'mssql': {
+        'ENGINE': 'mssql',
+        'NAME': 'db',
+        'USER': 'sa',
+        'PASSWORD': '8qLDc1Xco1Q4X0lqgjy4HWc2',
+        'HOST': 'bromo.liara.cloud',
+        'PORT': 34119,
+        'OPTIONS': {
+            'driver': 'ODBC Driver 18 for SQL Server',
+            'extra_params': 'Encrypt=no;',
+
+        }
     }
 
 }
