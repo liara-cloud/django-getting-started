@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'mariadb_db',
     'postgresql_db',
     'mongodb_db',
+    'elasticsearch_db'
 
 ]
 
@@ -145,6 +146,14 @@ DATABASES = {
     }
 
 }
+
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': 'http://elastic:G4bqHLMHvZKMscUy8OhLomK1@bromo.liara.cloud:32853/',
+    },
+}
+
+
 
 
 # Password validation
