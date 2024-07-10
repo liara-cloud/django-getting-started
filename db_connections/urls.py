@@ -9,5 +9,5 @@ urlpatterns = [
     path('mssql/', include('mssql_db.urls')),
     path('mongodb/', include('mongodb_db.urls')),
     path('elasticsearch/', include('elasticsearch_db.urls')),
-    # path('rabbitmq/', include('rabbitmq.urls')),
+    path('redis/', include('redis_db.urls')),
 ]

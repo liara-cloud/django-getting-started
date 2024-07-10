@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'mariadb_db',
     'postgresql_db',
     'mongodb_db',
-    'elasticsearch_db'
+    'elasticsearch_db',
+    'redis_db'
 
 ]
 
