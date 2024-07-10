@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mysql_db'
+    'mysql_db',
+    'mariadb_db',
 ]
 
 MIDDLEWARE = [
@@ -85,7 +86,7 @@ DATABASES = {
     },
 
     'mysql': {
-        'ENGINE': 'dj_db_conn_pool.backends.mysql', # 'django.db.backends.mysql' without connection pooling
+        'ENGINE': 'dj_db_conn_pool.backends.mysql', # 'django.db.backends.mysql' -> without connection pooling
         'NAME':     os.getenv("MYSQL_DB_NAME"), 
         'USER':     os.getenv("MYSQL_DB_USER"),
         'PASSWORD': os.getenv("MYSQL_DB_PASS"),
@@ -97,6 +98,21 @@ DATABASES = {
             'RECYCLE': 24 * 60 * 60
         }
     },
+
+    'mariadb': {
+        'ENGINE': 'dj_db_conn_pool.backends.mysql', # 'django.db.backends.mysql' -> without connection pooling
+        'NAME':     os.getenv("MARIA_DB_NAME"), 
+        'USER':     os.getenv("MARIA_DB_USER"),
+        'PASSWORD': os.getenv("MARIA_DB_PASS"),
+        'HOST':     os.getenv("MARIA_DB_HOST"),
+        'PORT':     os.getenv("MARIA_DB_PORT"),
+        'POOL_OPTIONS': {
+            'POOL_SIZE': 10,
+            'MAX_OVERFLOW': 10,
+            'RECYCLE': 24 * 60 * 60
+        }
+    },
+
 }
 
 
