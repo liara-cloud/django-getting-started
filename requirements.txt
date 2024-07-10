@@ -1,9 +1,11 @@
 asgiref==3.8.1
 Django==5.0.7
+dnspython==2.6.1
 greenlet==3.0.3
 mssql-django==1.5
 mysqlclient==2.2.4
 psycopg2==2.9.9
+pymongo==4.8.0
 pyodbc==5.1.0
 python-dotenv==1.0.1
 pytz==2024.1

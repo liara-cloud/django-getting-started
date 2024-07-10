@@ -27,9 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-if os.getenv("DEBUG"):
-    from dotenv import load_dotenv
-    load_dotenv()
+# if not os.getenv("DEBUG"):
+#     from dotenv import load_dotenv
+#     load_dotenv()
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'mysql_db',
     'mariadb_db',
     'postgresql_db',
+    'mongodb_db',
 
 ]
 
