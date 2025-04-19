@@ -15,10 +15,10 @@ from pathlib import Path
 import os
 
 # AWS S3 Settings for Liara
-AWS_ACCESS_KEY_ID = 'nieiou08cnbod58p'
-AWS_SECRET_ACCESS_KEY = '20b71a4c-1168-4945-8ed3-4724dbf9e997'
-AWS_STORAGE_BUCKET_NAME = 'bucketoo'
-AWS_S3_ENDPOINT_URL = 'https://storage.iran.liara.space'
+AWS_ACCESS_KEY_ID = os.getenv('LIARA_ACCESS_KEY')
+AWS_SECRET_ACCESS_KEY = os.getenv('LIARA_SECRET_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('BUCKET_NAME')
+AWS_S3_ENDPOINT_URL = os.getenv('LIARA_ENDPOINT_URL')
 
 # Static and Media Files (Optional if you're using this for static/media)
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
