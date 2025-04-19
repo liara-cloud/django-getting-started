@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Files</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="file"], input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 8px 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+        }
+
+        .delete-btn:hover {
+            background-color: #a71d2a;
+        }
+
+        .presigned-btn {
+            background-color: #28a745;
+        }
+
+        .presigned-btn:hover {
+            background-color: #1e7e34;
+        }
+
+        /* File List Styles */
+        ul#fileList {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul#fileList li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        ul#fileList li a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        ul#fileList li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Messages */
+        #uploadMessage, #deleteMessage {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        #uploadMessage.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        #uploadMessage.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <h1>File Management</h1>
+
+    <!-- Upload Form -->
+    <h2>Upload File</h2>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button type="submit">Upload</button>
+    </form>
+    <div id="uploadMessage"></div>
+
+    <!-- File List -->
+    <h2>File List</h2>
+    <ul id="fileList"></ul>
+
+    <script>
+        $(document).ready(function () {
+            // Load file list
+            function loadFiles() {
+                $.get('/api/files/list/', function (data) {
+                    $('#fileList').empty();
+                    data.files.forEach(function (file) {
+                        const listItem = `
+                            <li>
+                                <span>${file}</span>
+                                <div>
+                                    <button class="delete-btn" data-file="${file}">Delete</button>
+                                    <button class="presigned-btn" data-file="${file}">Pre-Signed URL</button>
+                                    <a href="${generatePermanentUrl(file)}" target="_blank">Permanent URL</a>
+                                </div>
+                            </li>
+                        `;
+                        $('#fileList').append(listItem);
+                    });
+                });
+            }
+
+            // Generate permanent URL
+            function generatePermanentUrl(fileName) {
+                const bucketName = "{{ AWS_STORAGE_BUCKET_NAME }}";
+                const endpointUrl = "{{ AWS_S3_ENDPOINT_URL }}";
+                return `${endpointUrl}/${bucketName}/${fileName}`;
+            }
+
+            // Upload file
+            $('#uploadForm').on('submit', function (e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    url: '/api/files/upload/',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        $('#uploadMessage')
+                            .removeClass('error')
+                            .addClass('success')
+                            .text(response.message);
+                        loadFiles();
+                    },
+                    error: function (xhr) {
+                        $('#uploadMessage')
+                            .removeClass('success')
+                            .addClass('error')
+                            .text('Error: ' + xhr.responseJSON.error);
+                    }
+                });
+            });
+
+            // Delete file
+            $(document).on('click', '.delete-btn', function () {
+                const fileName = $(this).data('file');
+                $.post('/api/files/delete/', { file_name: fileName }, function (response) {
+                    alert(response.message);
+                    loadFiles();
+                }).fail(function (xhr) {
+                    alert('Error: ' + xhr.responseJSON.error);
+                });
+            });
+
+            // Generate pre-signed URL
+            $(document).on('click', '.presigned-btn', function () {
+                const fileName = $(this).data('file');
+                $.get('/api/files/presigned-url/', { file_name: fileName }, function (response) {
+                    window.open(response.url, '_blank');
+                }).fail(function (xhr) {
+                    alert('Error: ' + xhr.responseJSON.error);
+                });
+            });
+
+            // Initial file load
+            loadFiles();
+        });
+    </script>
+</body>
+</html>
