@@ -19,7 +19,7 @@ pip install virtualenv
 python -m venv .venv 
 ```
 ```
-source .venv/Scripts/Activate # or somehow enable your virtual env
+source .venv\Scripts\Activate # source .venv/bin/activate
 ```
 ```
 pip install -r requirements.txt
